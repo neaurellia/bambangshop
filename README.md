@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # BambangShop Publisher App
 Tutorial and Example for Advanced Programming 2024 - Faculty of Computer Science, Universitas Indonesia
 
@@ -78,10 +77,12 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. For now, as BambangShop uses a single model struct, it suggests that all subscribers work the same way, hence the system doesn't need flexibility. So a single struct is enough. It will be a different case if we expect different types of subscribers or a variation of different behaviors when receiving updates.
+
+2. Since id and url must be unique, DashMap is necessary because it checks uniqueness instantly and prevents duplicates whereas checking uniqueness in a vec requires iteration through all elements.
+
+3. We still need DashMap as it is designed for safe concurrent access. We use it if multiple threads might access or modify the data simultaneously or if we need efficient, thread-safe read or write operations.
 
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
-=======
-# advprog-module7
->>>>>>> eb81aa0e192b6ece2b3505882f6c5437d3c70f15
