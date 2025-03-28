@@ -84,5 +84,16 @@ This is the place for you to write reflections:
 3. We still need DashMap as it is designed for safe concurrent access. We use it if multiple threads might access or modify the data simultaneously or if we need efficient, thread-safe read or write operations.
 
 #### Reflection Publisher-2
+1. We know that the Model handles business logic and data storage, this leads to the violations of the Single Responsibility Principle. We separate them because We can mock repositories for testing business logic separately.
+
+2. - Code complexity increases: if Program, Subscriber and Notification all handle business logic and data access, the models will depend on each other too much. If we change one model, it could break the entire system.
+- Dificulty debugging and maintainance: ff Notification logic is inside Subscriber, we might have duplicate logic across models. Fixing a bug means changing multiple places instead of just one Service layer.
+- Performance issues: Without a Repository Layer, direct database access from multiple models could lead to redundant queries. No caching mechanism means slow performance.
+
+3. - Quick API Testing → No need to write test scripts, just send requests.
+- Automated Tests → Use Pre-request Scripts & Test Scripts to automate API testing.
+- Collection Runner → Run multiple API tests in one click.
+- Environment Variables → Easily switch between dev/staging/production APIs.
+- Mock Servers → Simulate API responses without a real backend.
 
 #### Reflection Publisher-3
