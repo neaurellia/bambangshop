@@ -97,3 +97,18 @@ This is the place for you to write reflections:
 - Mock Servers → Simulate API responses without a real backend.
 
 #### Reflection Publisher-3
+1. Based on the code structure and the NotificationService.notify(...) method, the Push Model is used. The publisher (NotificationService) actively sends notifications to all subscribers when an event occurs. Subscribers do not request or pull data; they simply receive what is pushed to them. 
+
+2. Advantages
+- More control for subscribers: Subscribers decide when to fetch updates, avoiding unnecessary notifications. This can be useful if some subscribers need data less frequently.
+- Less frequent updates reduce load: If subscribers only check for updates when necessary, it reduces the number of messages being sent.
+- Handles large data more efficiently: Instead of pushing all data, subscribers can pull only what they need.
+
+Disadvantages
+- Delays in receiving updates: Subscribers must continuously check for updates, introducing delays (polling overhead). If a subscriber pulls data too late, it might miss important notifications.
+- Increased complexity: Each subscriber needs logic to check for changes instead of simply reacting to pushes.The publisher needs to maintain a history of notifications so that subscribers can fetch the latest data when needed.
+- Inefficient resource usage: If subscribers keep pulling data unnecessarily, it increases CPU and network load. Unlike the Push Model, which sends notifications only when needed, the Pull Model might introduce excessive API calls.
+
+3. - Performance bottlenecks: If one subscriber takes a long time to process a notification, all other notifications are delayed.
+- Application freezing: The entire server might freeze or slow down if notifications take too long. If notifications are sent synchronously (one by one), the system cannot handle multiple events efficiently.
+- Scalability Issues: Without multi-threading, the system cannot handle multiple notifications at once.
